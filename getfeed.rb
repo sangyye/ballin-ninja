@@ -1,4 +1,4 @@
-equire 'sinatra'
+require 'sinatra'
 require 'simple-rss'
 require 'builder'
 require 'open-uri'
