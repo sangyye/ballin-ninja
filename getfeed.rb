@@ -3,7 +3,18 @@ require 'simple-rss'
 require 'builder'
 require 'open-uri'
 
-get '/*' do
+get '/' do
+  erb :index
+end
+
+get '/feed' do
+    if params[:url].to_s.start_with?('http://') then
+        params[:url].to_s.slice!(0,7)
+    end
+    redirect "/feed/" + params[:url]
+end
+
+get '/feed/*' do
   rss = SimpleRSS.parse open('http://' + params[:splat][0].to_s)
   builder do |xml|
     xml.instruct! :xml, :version => '1.0'
