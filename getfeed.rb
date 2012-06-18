@@ -15,7 +15,7 @@ get '/feed' do
 end
 
 get '/feed/*' do
-  rss = SimpleRSS.parse open('http://' + params[:splat][0].to_s)
+  rss = SimpleRSS.parse(open('http://' + params[:splat][0].to_s))
   builder do |xml|
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
